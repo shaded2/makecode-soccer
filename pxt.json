@@ -1,12 +1,19 @@
 {
-    "name": "main",
-    "description": "",
+    "name": "makecode-soccer",
+    "description": "Arcade soccer game with physics, AI, goalkeepers, and sound",
     "dependencies": {
         "device": "*"
     },
     "files": [
-        "main.blocks",
         "main.ts",
+        "constants.ts",
+        "assets.ts",
+        "field.ts",
+        "ball.ts",
+        "players.ts",
+        "ai.ts",
+        "ui.ts",
+        "game.ts",
         "README.md",
         "assets.json"
     ],
