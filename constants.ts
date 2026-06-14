@@ -25,8 +25,8 @@ const GOALKEEPER_RADIUS = 5
 const PLAYER_MAX_SPEED = 2.4
 const PLAYER_ACCEL = 0.4
 const PLAYER_FRICTION = 0.82
-const AI_MAX_SPEED = 2.0
-const GOALKEEPER_MAX_SPEED = 1.8
+const AI_MAX_SPEED = 1.6
+const GOALKEEPER_MAX_SPEED = 1.5
 
 // Ball physics
 const BALL_FRICTION = 0.985

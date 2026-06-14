@@ -18,8 +18,8 @@ function updateAI(): void {
     let targetX = ball.x
     let targetY = ball.y
 
-    if (ball.x < FIELD_CENTER_X - 10) {
-        targetX = FIELD_X + FIELD_W * 0.65
+    if (ball.x < FIELD_CENTER_X + 20) {
+        targetX = FIELD_X + FIELD_W * 0.72
     }
 
     let dx = targetX - aiPlayer.x
@@ -27,8 +27,8 @@ function updateAI(): void {
     let dist = Math.sqrt(dx * dx + dy * dy)
 
     if (dist > 1) {
-        aiPlayer.vx += (dx / dist) * 0.25
-        aiPlayer.vy += (dy / dist) * 0.25
+        aiPlayer.vx += (dx / dist) * 0.18
+        aiPlayer.vy += (dy / dist) * 0.18
     }
 
     let speed = Math.sqrt(aiPlayer.vx * aiPlayer.vx + aiPlayer.vy * aiPlayer.vy)
@@ -49,11 +49,11 @@ function updateAI(): void {
 
     if (ballDist < PLAYER_RADIUS + BALL_RADIUS + 2 && ballDist > 0.1) {
         let goalDx = FIELD_X - ball.x
-        let goalDy = FIELD_CENTER_Y - ball.y + Math.randomRange(-15, 15)
+        let goalDy = FIELD_CENTER_Y - ball.y + Math.randomRange(-30, 30)
         let goalLen = Math.sqrt(goalDx * goalDx + goalDy * goalDy)
         if (goalLen > 0) {
-            ball.vx = (goalDx / goalLen) * KICK_POWER * 0.95
-            ball.vy = (goalDy / goalLen) * KICK_POWER * 0.95
+            ball.vx = (goalDx / goalLen) * KICK_POWER * 0.72
+            ball.vy = (goalDy / goalLen) * KICK_POWER * 0.72
         }
         playKickSound()
     } else if (ballDist < PLAYER_RADIUS + BALL_RADIUS + 1 && speed > 0.3) {

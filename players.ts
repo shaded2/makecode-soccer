@@ -106,9 +106,9 @@ function updateGoalkeeper(keeper: Sprite, isLeft: boolean): void {
 
     let chase = false
     if (isLeft) {
-        chase = ball.x < FIELD_X + 22
+        chase = ball.x < FIELD_X + 14
     } else {
-        chase = ball.x > FIELD_X + FIELD_W - 22
+        chase = ball.x > FIELD_X + FIELD_W - 14
     }
 
     if (chase) {
@@ -142,8 +142,8 @@ function updateGoalkeeper(keeper: Sprite, isLeft: boolean): void {
         let overlap = GOALKEEPER_RADIUS + BALL_RADIUS - dist
         ball.x += nx * overlap
         ball.y += ny * overlap
-        ball.vx = nx * 3.0 + keeper.vx * 0.5
-        ball.vy = ny * 3.0 + keeper.vy * 0.5
+        ball.vx = nx * 2.0 + keeper.vx * 0.3
+        ball.vy = ny * 2.0 + keeper.vy * 0.3
         playKickSound()
     }
 }
