@@ -3,10 +3,10 @@
 function drawField(): void {
     let bg = image.create(160, 120)
 
-    // Red field with darker red stripes
-    bg.fill(2)
+    // Green field with lighter green stripes
+    bg.fill(7)
     for (let i = 0; i < 8; i++) {
-        bg.fillRect(FIELD_X, FIELD_Y + i * 13, FIELD_W, 6, 4)
+        bg.fillRect(FIELD_X, FIELD_Y + i * 13, FIELD_W, 6, 8)
     }
 
     // Field outline and markings
