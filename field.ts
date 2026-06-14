@@ -1,6 +1,6 @@
 // === FIELD ===
 
-export function drawField(): void {
+function drawField(): void {
     let bg = image.create(160, 120)
 
     // Red field with darker red stripes

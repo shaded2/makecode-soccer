@@ -1,11 +1,10 @@
 // === UI: SCORE, TIMER, MESSAGES ===
-import { scoreBlue, scoreRed, timeLeft, MATCH_LENGTH } from "./game"
 
 let scoreSprite: Sprite = null
 let timerSprite: Sprite = null
 let messageSprite: Sprite = null
 
-export function createHUD(): void {
+function createHUD(): void {
     scoreSprite = sprites.create(makeScoreImage(), SpriteKind.Food)
     scoreSprite.setPosition(80, 4)
     scoreSprite.z = 20
@@ -17,19 +16,19 @@ export function createHUD(): void {
     timerSprite.setFlag(SpriteFlag.Ghost, true)
 }
 
-export function updateScoreDisplay(): void {
+function updateScoreDisplay(): void {
     if (scoreSprite) {
         scoreSprite.setImage(makeScoreImage())
     }
 }
 
-export function updateTimerDisplay(): void {
+function updateTimerDisplay(): void {
     if (timerSprite) {
         timerSprite.setImage(makeTimerImage())
     }
 }
 
-export function showMessage(text: string, color: number): void {
+function showMessage(text: string, color: number): void {
     if (messageSprite) messageSprite.destroy()
     let msgImg = image.create(80, 16)
     msgImg.fill(0)

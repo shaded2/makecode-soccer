@@ -1,17 +1,12 @@
 // === GAME LOGIC: GOALS, TIMER, MAIN LOOP ===
-import { ball, resetBall } from "./ball"
-import { resetPlayerPositions } from "./players"
-import { resetAI } from "./ai"
-import { updateScoreDisplay, updateTimerDisplay, showMessage } from "./ui"
-import { playGoalSound, playWhistleSound } from "./assets"
 
-export let scoreBlue = 0
-export let scoreRed = 0
-export let timeLeft = MATCH_LENGTH
-export let gameState = "play"
+let scoreBlue = 0
+let scoreRed = 0
+let timeLeft = MATCH_LENGTH
+let gameState = "play"
 let lastSecondTick = -1
 
-export function resetGame(): void {
+function resetGame(): void {
     scoreBlue = 0
     scoreRed = 0
     timeLeft = MATCH_LENGTH
@@ -24,12 +19,12 @@ export function resetGame(): void {
     updateTimerDisplay()
 }
 
-export function startGame(): void {
+function startGame(): void {
     game.splash("ARCADE SOCCER", "D-pad: Move | A: Kick | MENU: Pause")
     resetGame()
 }
 
-export function handleGoal(scoringTeam: number): void {
+function handleGoal(scoringTeam: number): void {
     if (gameState !== "play") return
     gameState = "goal"
 
@@ -60,7 +55,7 @@ export function handleGoal(scoringTeam: number): void {
     }
 }
 
-export function endGame(): void {
+function endGame(): void {
     gameState = "over"
     control.runInParallel(function () {
         pause(500)
@@ -76,7 +71,7 @@ export function endGame(): void {
     })
 }
 
-export function updateTimer(): void {
+function updateTimer(): void {
     let elapsed = game.runtime() / 1000
     let tick = Math.floor(elapsed)
     if (tick !== lastSecondTick) {
@@ -87,6 +82,19 @@ export function updateTimer(): void {
         if (timeLeft <= 0 && gameState === "play") {
             endGame()
         }
+    }
+}
+
+function checkGoals(): void {
+    if (gameState !== "play") return
+
+    if (ball.x < FIELD_X - 4 && ball.y > GOAL_TOP && ball.y < GOAL_BOTTOM) {
+        handleGoal(2)
+        return
+    }
+    if (ball.x > FIELD_X + FIELD_W + 4 && ball.y > GOAL_TOP && ball.y < GOAL_BOTTOM) {
+        handleGoal(1)
+        return
     }
 }
 

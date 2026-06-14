@@ -1,12 +1,10 @@
 // === PLAYERS & INPUT ===
-import { ball, pushBallFromSprite } from "./ball"
-import { P1_IMG, KEEPER_IMG, playKickSound } from "./assets"
 
-export let p1: Sprite = null
-export let keeper1: Sprite = null
-export let keeper2: Sprite = null
+let p1: Sprite = null
+let keeper1: Sprite = null
+let keeper2: Sprite = null
 
-export function createPlayers(): void {
+function createPlayers(): void {
     p1 = sprites.create(P1_IMG, SpriteKind.Player)
     p1.setPosition(FIELD_X + 35, FIELD_CENTER_Y)
     p1.z = 5
@@ -20,7 +18,7 @@ export function createPlayers(): void {
     keeper2.z = 5
 }
 
-export function resetPlayerPositions(): void {
+function resetPlayerPositions(): void {
     p1.setPosition(FIELD_X + 35, FIELD_CENTER_Y)
     p1.vx = 0
     p1.vy = 0
@@ -32,14 +30,14 @@ export function resetPlayerPositions(): void {
     keeper2.vy = 0
 }
 
-export function constrainToField(s: Sprite, radius: number): void {
+function constrainToField(s: Sprite, radius: number): void {
     if (s.x < FIELD_X + radius) s.x = FIELD_X + radius
     if (s.x > FIELD_X + FIELD_W - radius) s.x = FIELD_X + FIELD_W - radius
     if (s.y < FIELD_Y + radius) s.y = FIELD_Y + radius
     if (s.y > FIELD_Y + FIELD_H - radius) s.y = FIELD_Y + FIELD_H - radius
 }
 
-export function updateP1(): void {
+function updateP1(): void {
     let stickInput = readStickInput()
     let magnitude = Math.sqrt(stickInput.ix * stickInput.ix + stickInput.iy * stickInput.iy)
 
@@ -57,7 +55,6 @@ export function updateP1(): void {
     p1.y += p1.vy
     constrainToField(p1, PLAYER_RADIUS)
 
-    // Collide ball
     pushBallFromSprite(p1, PLAYER_RADIUS, 0)
 
     let dx = ball.x - p1.x
@@ -77,7 +74,6 @@ export function updateP1(): void {
         ball.vy = kickDir.iy * KICK_POWER
         playKickSound()
     } else if (dist < PLAYER_RADIUS + BALL_RADIUS + 1 && magnitude > 0.1) {
-        // Dribble
         ball.x = p1.x + (stickInput.ix / magnitude) * (PLAYER_RADIUS + BALL_RADIUS)
         ball.y = p1.y + (stickInput.iy / magnitude) * (PLAYER_RADIUS + BALL_RADIUS)
         ball.vx = p1.vx * 1.1 + (stickInput.ix / magnitude) * DRIBBLE_POWER
@@ -103,7 +99,7 @@ function capSpeed(s: Sprite, max: number): void {
     }
 }
 
-export function updateGoalkeeper(keeper: Sprite, isLeft: boolean): void {
+function updateGoalkeeper(keeper: Sprite, isLeft: boolean): void {
     let targetY = ball.y
     if (targetY < FIELD_CENTER_Y - GOALKEEPER_RADIUS - 12) targetY = FIELD_CENTER_Y - GOALKEEPER_RADIUS - 12
     if (targetY > FIELD_CENTER_Y + GOALKEEPER_RADIUS + 12) targetY = FIELD_CENTER_Y + GOALKEEPER_RADIUS + 12
@@ -137,7 +133,6 @@ export function updateGoalkeeper(keeper: Sprite, isLeft: boolean): void {
     keeper.y += keeper.vy
     constrainToField(keeper, GOALKEEPER_RADIUS)
 
-    // Keeper collision with ball (punch away)
     let dx = ball.x - keeper.x
     let dy = ball.y - keeper.y
     let dist = Math.sqrt(dx * dx + dy * dy)

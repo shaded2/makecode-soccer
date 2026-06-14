@@ -1,10 +1,4 @@
 // === MAIN ENTRY POINT ===
-import { drawField } from "./field"
-import { createBall, updateBall } from "./ball"
-import { createPlayers, updateP1, updateGoalkeeper, keeper1, keeper2, resetPlayerPositions } from "./players"
-import { createAI, updateAI, resetAI } from "./ai"
-import { createHUD, updateTimerDisplay } from "./ui"
-import { startGame, updateTimer, gameState } from "./game"
 
 drawField()
 createPlayers()
@@ -24,13 +18,8 @@ game.onUpdate(function () {
         updateGoalkeeper(keeper1, true)
         updateGoalkeeper(keeper2, false)
         updateBall()
+        checkGoals()
     }
 
     updateTimer()
 })
-
-// Keep references alive for potential external access
-if (false) {
-    resetPlayerPositions()
-    resetAI()
-}

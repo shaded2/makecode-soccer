@@ -1,39 +1,20 @@
 // === BALL PHYSICS ===
-import { playThumpSound } from "./assets"
-import { handleGoal } from "./game"
 
-export let ball: Sprite = null
+let ball: Sprite = null
 
-export function createBall(): void {
-    ball = sprites.create(img`
-        . . . . . . . . . . . . . . . .
-        . . . . . 2 2 2 2 2 2 . . . . .
-        . . . 2 2 5 5 5 5 5 5 2 2 . . .
-        . . 2 5 5 2 2 2 2 2 2 5 5 2 . .
-        . 2 5 2 2 2 2 2 2 2 2 2 2 5 2 .
-        . 2 5 2 2 2 2 2 2 2 2 2 2 5 2 .
-        . 2 5 2 2 2 2 2 2 2 2 2 2 5 2 .
-        . 2 5 2 2 2 2 2 2 2 2 2 2 5 2 .
-        . 2 5 2 2 2 2 2 2 2 2 2 2 5 2 .
-        . 2 5 2 2 2 2 2 2 2 2 2 2 5 2 .
-        . 2 5 2 2 2 2 2 2 2 2 2 2 5 2 .
-        . . 2 5 5 2 2 2 2 2 2 5 5 2 . .
-        . . . 2 2 5 5 5 5 5 5 2 2 . . .
-        . . . . . 2 2 2 2 2 2 . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-    `, SpriteKind.Projectile)
+function createBall(): void {
+    ball = sprites.create(BALL_IMG, SpriteKind.Projectile)
     ball.setPosition(80, 62)
     ball.z = 10
 }
 
-export function resetBall(): void {
+function resetBall(): void {
     ball.setPosition(80, 62)
     ball.vx = 0
     ball.vy = 0
 }
 
-export function updateBall(): void {
+function updateBall(): void {
     ball.vx *= BALL_FRICTION
     ball.vy *= BALL_FRICTION
 
@@ -49,28 +30,18 @@ export function updateBall(): void {
     ball.x += ball.vx
     ball.y += ball.vy
 
-    // Left wall / goal
+    // Left wall
     if (ball.x - BALL_RADIUS < FIELD_X) {
-        if (ball.y > GOAL_TOP && ball.y < GOAL_BOTTOM) {
-            if (ball.x < FIELD_X - 4) {
-                handleGoal(2)
-                return
-            }
-        } else {
+        if (ball.y <= GOAL_TOP || ball.y >= GOAL_BOTTOM) {
             ball.x = FIELD_X + BALL_RADIUS
             ball.vx = -ball.vx * BALL_RESTITUTION
             playThumpSound()
         }
     }
 
-    // Right wall / goal
+    // Right wall
     if (ball.x + BALL_RADIUS > FIELD_X + FIELD_W) {
-        if (ball.y > GOAL_TOP && ball.y < GOAL_BOTTOM) {
-            if (ball.x > FIELD_X + FIELD_W + 4) {
-                handleGoal(1)
-                return
-            }
-        } else {
+        if (ball.y <= GOAL_TOP || ball.y >= GOAL_BOTTOM) {
             ball.x = FIELD_X + FIELD_W - BALL_RADIUS
             ball.vx = -ball.vx * BALL_RESTITUTION
             playThumpSound()
@@ -88,7 +59,7 @@ export function updateBall(): void {
     }
 }
 
-export function pushBallFromSprite(s: Sprite, radius: number, power: number): void {
+function pushBallFromSprite(s: Sprite, radius: number, power: number): void {
     let dx = ball.x - s.x
     let dy = ball.y - s.y
     let dist = Math.sqrt(dx * dx + dy * dy)

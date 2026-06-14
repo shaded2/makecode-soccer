@@ -1,7 +1,7 @@
 // === ASSETS: SPRITES & SOUNDS ===
 
 // Soccer ball (16x16)
-export const BALL_IMG = img`
+const BALL_IMG = img`
     . . . . . . . . . . . . . . . .
     . . . . . 2 2 2 2 2 2 . . . . .
     . . . 2 2 5 5 5 5 5 5 2 2 . . .
@@ -21,7 +21,7 @@ export const BALL_IMG = img`
 `
 
 // Blue team player (16x16 with face, jersey, shorts)
-export const P1_IMG = img`
+const P1_IMG = img`
     . . . . . . 1 1 1 1 . . . . . .
     . . . . 1 1 1 1 1 1 1 1 . . . .
     . . . 1 1 4 4 4 4 4 4 1 1 . . .
@@ -41,7 +41,7 @@ export const P1_IMG = img`
 `
 
 // Red team player (16x16 with face, jersey, shorts)
-export const P2_IMG = img`
+const P2_IMG = img`
     . . . . . . 2 2 2 2 . . . . . .
     . . . . 2 2 2 2 2 2 2 2 . . . .
     . . . 2 2 4 4 4 4 4 4 2 2 . . .
@@ -61,7 +61,7 @@ export const P2_IMG = img`
 `
 
 // Goalkeeper (16x16 padded)
-export const KEEPER_IMG = img`
+const KEEPER_IMG = img`
     . . . . . . . . . . . . . . . .
     . . . . . . 7 7 7 7 . . . . . .
     . . . . 7 7 4 4 4 4 7 7 . . . .
@@ -81,26 +81,26 @@ export const KEEPER_IMG = img`
 `
 
 // Sounds
-export function playKickSound(): void {
+function playKickSound(): void {
     music.play(music.tonePlayable(220, music.beat(BeatFraction.Sixteenth)), music.PlaybackMode.InBackground)
 }
 
-export function playThumpSound(): void {
+function playThumpSound(): void {
     music.thump.play()
 }
 
-export function playGoalSound(): void {
+function playGoalSound(): void {
     music.play(music.tonePlayable(523, music.beat(BeatFraction.Quarter)), music.PlaybackMode.InBackground)
     music.play(music.tonePlayable(659, music.beat(BeatFraction.Quarter)), music.PlaybackMode.InBackground)
     music.play(music.tonePlayable(784, music.beat(BeatFraction.Half)), music.PlaybackMode.InBackground)
 }
 
-export function playWhistleSound(): void {
+function playWhistleSound(): void {
     music.play(music.tonePlayable(880, music.beat(BeatFraction.Quarter)), music.PlaybackMode.InBackground)
 }
 
 // Helper to create a shadow under a sprite
-export function withShadow(base: Image): Image {
+function withShadow(base: Image): Image {
     let result = image.create(base.width, base.height + 2)
     result.fill(0)
     result.drawImage(base, 0, 0)

@@ -1,27 +1,23 @@
 // === AI OPPONENT ===
-import { ball, pushBallFromSprite } from "./ball"
-import { p1, constrainToField } from "./players"
-import { P2_IMG, playKickSound } from "./assets"
 
-export let aiPlayer: Sprite = null
+let aiPlayer: Sprite = null
 
-export function createAI(): void {
+function createAI(): void {
     aiPlayer = sprites.create(P2_IMG, SpriteKind.Player)
     aiPlayer.setPosition(FIELD_X + FIELD_W - 35, FIELD_CENTER_Y)
     aiPlayer.z = 5
 }
 
-export function resetAI(): void {
+function resetAI(): void {
     aiPlayer.setPosition(FIELD_X + FIELD_W - 35, FIELD_CENTER_Y)
     aiPlayer.vx = 0
     aiPlayer.vy = 0
 }
 
-export function updateAI(): void {
+function updateAI(): void {
     let targetX = ball.x
     let targetY = ball.y
 
-    // Defensive when ball is deep on AI's half
     if (ball.x < FIELD_CENTER_X - 10) {
         targetX = FIELD_X + FIELD_W * 0.65
     }
@@ -64,9 +60,4 @@ export function updateAI(): void {
         ball.vx = aiPlayer.vx * 1.1
         ball.vy = aiPlayer.vy * 1.1
     }
-}
-
-// Keep p1 import alive for future multiplayer mode
-if (false) {
-    p1.x = p1.x
 }
