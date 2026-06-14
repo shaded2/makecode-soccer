@@ -389,12 +389,10 @@ if (team == 1) {
 // === FIELD DRAWING ===
 function drawField () {
     bg = image.create(160, 120)
-    // Grass with stripes
-    // dark green
-    bg.fill(7)
+    // Red field with darker red stripes
+    bg.fill(2)
     for (let i = 0; i <= 7; i++) {
-        // light green stripes
-        bg.fillRect(FIELD_X, FIELD_Y + i * 13, FIELD_W, 6, 8)
+        bg.fillRect(FIELD_X, FIELD_Y + i * 13, FIELD_W, 6, 4)
     }
     // Field outline
     bg.drawRect(FIELD_X, FIELD_Y, FIELD_W, FIELD_H, 6)
