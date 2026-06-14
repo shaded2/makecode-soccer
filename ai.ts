@@ -1,8 +1,4 @@
 // === AI OPPONENT ===
-import {
-    FIELD_X, FIELD_Y, FIELD_W, FIELD_CENTER_X, FIELD_CENTER_Y,
-    PLAYER_RADIUS, BALL_RADIUS, AI_MAX_SPEED, KICK_POWER
-} from "./constants"
 import { ball, pushBallFromSprite } from "./ball"
 import { p1, constrainToField } from "./players"
 import { P2_IMG, playKickSound } from "./assets"

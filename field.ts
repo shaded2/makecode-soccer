@@ -1,8 +1,4 @@
 // === FIELD ===
-import {
-    FIELD_X, FIELD_Y, FIELD_W, FIELD_H, FIELD_CENTER_X, FIELD_CENTER_Y,
-    GOAL_TOP, GOAL_BOTTOM, GOAL_HEIGHT, GOAL_DEPTH
-} from "./constants"
 
 export function drawField(): void {
     let bg = image.create(160, 120)

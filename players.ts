@@ -1,10 +1,4 @@
 // === PLAYERS & INPUT ===
-import {
-    FIELD_X, FIELD_Y, FIELD_W, FIELD_H, FIELD_CENTER_Y,
-    PLAYER_RADIUS, GOALKEEPER_RADIUS,
-    PLAYER_MAX_SPEED, PLAYER_ACCEL, PLAYER_FRICTION,
-    KICK_POWER, DRIBBLE_POWER, BALL_RADIUS
-} from "./constants"
 import { ball, pushBallFromSprite } from "./ball"
 import { P1_IMG, KEEPER_IMG, playKickSound } from "./assets"
 

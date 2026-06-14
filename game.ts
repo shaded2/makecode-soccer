@@ -1,7 +1,4 @@
 // === GAME LOGIC: GOALS, TIMER, MAIN LOOP ===
-import {
-    FIELD_X, FIELD_W, MATCH_LENGTH, WIN_SCORE
-} from "./constants"
 import { ball, resetBall } from "./ball"
 import { resetPlayerPositions } from "./players"
 import { resetAI } from "./ai"

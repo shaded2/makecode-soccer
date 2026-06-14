@@ -1,9 +1,4 @@
 // === BALL PHYSICS ===
-import {
-    FIELD_X, FIELD_Y, FIELD_W, FIELD_H,
-    BALL_RADIUS, BALL_FRICTION, BALL_RESTITUTION,
-    GOAL_TOP, GOAL_BOTTOM
-} from "./constants"
 import { playThumpSound } from "./assets"
 import { handleGoal } from "./game"
 
